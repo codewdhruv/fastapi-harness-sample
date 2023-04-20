@@ -42,4 +42,10 @@ pipeline:
                   identifier: Pytest
                   spec:
                     shell: Sh
-                    command: pwd
+                    command: |
+                      pytest --junitxml=**/output.xml
+                    reports:
+                      type: JUnit
+                      spec:
+                        paths:
+                          - "**/output.xml"
