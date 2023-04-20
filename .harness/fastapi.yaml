@@ -43,9 +43,9 @@ pipeline:
                   spec:
                     shell: Sh
                     command: |
-                      pytest --junitxml=**/output.xml
+                      pytest --junitxml=output-test.xml
                     reports:
                       type: JUnit
                       spec:
                         paths:
-                          - "**/output.xml"
+                          - output-test.xml
