@@ -1,0 +1,45 @@
+pipeline:
+  name: fastapi
+  identifier: fastapi
+  projectIdentifier: NgLabs
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: gitconnectordhruba
+        repoName: fastapi-harness-sample
+        build: <+input>
+  stages:
+    - stage:
+        name: test
+        identifier: test
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Install Dependencies
+                  identifier: Install_Dependencies
+                  spec:
+                    shell: Sh
+                    command: |
+                      sudo apt-get update && sudo apt-get install -y python3-dev && sudo apt-get install default-libmysqlclient-dev
+
+                      pip download --cache-dir .pip_cache -r requirements.txt
+              - step:
+                  type: Run
+                  name: Pytest
+                  identifier: Pytest
+                  spec:
+                    shell: Sh
+                    command: pwd
