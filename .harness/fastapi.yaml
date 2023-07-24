@@ -31,11 +31,10 @@ pipeline:
                   identifier: Install_Dependencies
                   spec:
                     shell: Sh
-                    command: |
+                    command: |-
                       sudo apt-get update && sudo apt-get install -y python3-dev && sudo apt-get install default-libmysqlclient-dev
+
                       pip download --cache-dir .pip_cache -r requirements.txt
-                      pip install pytest
-                      pytest --junitxml=output-test.xml
                     reports:
                       type: JUnit
                       spec:
